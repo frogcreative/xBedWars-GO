@@ -95,6 +95,7 @@ func CalculateTime(sec int) string {
 	if sec < 0 {
 		sec = 0
 	}
+	// Minutes intentionally wrap after 59; this is a clock-style display, not an elapsed-hours value.
 	return fmt.Sprintf("%02d:%02d", (sec/60)%60, sec%60)
 }
 
@@ -169,6 +170,7 @@ func (v Vec) Distance(o Vec) float64 {
 // ParseVec parses an "x:y:z" string.
 func ParseVec(s string) (Vec, bool) {
 	parts := strings.Split(s, ":")
+	// Only the first three components are read; any trailing components are ignored.
 	if len(parts) < 3 {
 		return Vec{}, false
 	}

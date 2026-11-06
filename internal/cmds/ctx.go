@@ -49,6 +49,7 @@ func buildCtx(p *player.Player, tx *world.Tx, cmdName string) *Ctx {
 		}
 	}
 
+	// Cache the first bed in the scan so setSpawn can assign it without another transaction lookup.
 	if cmdName == "setspawn" {
 		const r = 17
 		base := cube.PosFromVec3(pos)

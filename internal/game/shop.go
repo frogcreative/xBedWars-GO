@@ -477,6 +477,7 @@ func (g *Game) purchase(p *player.Player, e shopEntry) {
 		given := toolStack(isAxe, t, false)
 		bought(p, toolName(isAxe, t))
 		inv := p.Inventory()
+		// Remove obsolete tools of this type so upgrades do not leave multiple tiers in the inventory.
 		for slot, s := range inv.Slots() {
 			switch s.Item().(type) {
 			case item.Axe:

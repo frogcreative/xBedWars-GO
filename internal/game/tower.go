@@ -74,6 +74,7 @@ func (g *Game) SpawnTower(p *player.Player, chest cube.Pos) bool {
 			<-t.C
 			pos := cube.Pos{chest[0] + s.dx, chest[1] + s.dy, chest[2] + s.dz}
 			g.P.Mu.Lock()
+			// The match may have ended or the arena reloaded while this build was in flight.
 			if g.Phase != PhaseGame || g.World != w {
 				g.P.Mu.Unlock()
 				return

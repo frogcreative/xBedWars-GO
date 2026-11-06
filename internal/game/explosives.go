@@ -97,6 +97,7 @@ func (g *Game) trackFireball(h *world.EntityHandle, w *world.World, owner string
 				hit = true
 			}
 			for o := range tx.EntitiesWithin(box(util.Vec{X: pos[0], Y: pos[1], Z: pos[2]}, 1)) {
+				// The fireball starts at the owner's eye position, so ignore that overlap during launch.
 				if pl, ok := o.(*player.Player); ok && (pl.Name() != owner || i > 5) {
 					hit = true
 				}

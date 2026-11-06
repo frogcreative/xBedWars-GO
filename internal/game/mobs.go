@@ -135,6 +135,7 @@ func (g *Game) targets(m *Mob) []mobTarget {
 			out = append(out, mobTarget{Name: pt.Name, Pos: pos, Player: true})
 		}
 	}
+	// Enemy mobs are targets too, so defenders can fight opposing defenders.
 	for _, o := range g.Mobs {
 		if o != m && o.Team != m.Team {
 			out = append(out, mobTarget{Name: o.Kind.Label, Pos: o.Pos, Mob: o})

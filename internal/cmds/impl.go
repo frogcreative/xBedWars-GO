@@ -591,6 +591,8 @@ func addGenerator(c *Ctx, a []string) {
 		c.Pl.Sound("mob.villager.no")
 	}
 
+	// Without an argument, configure the nearest team's generators; if none is nearby, a gem block
+	// underfoot identifies a shared diamond or emerald generator.
 	if len(a) == 0 {
 		team := getNearestTeam(c)
 		if team == "" {
@@ -671,6 +673,7 @@ func save(c *Ctx) {
 	pl.TeleportTo(game.P.DefaultWorld(), game.P.DefaultSpawn())
 	pl.ClearEffects()
 
+	// Sync and world persistence may block, so keep them out of command dispatch.
 	go func() {
 		pl.Sync()
 		if game.P.Worlds.IsGenerated(name) {

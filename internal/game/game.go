@@ -182,6 +182,7 @@ func (g *Game) maxPlayers() int { return g.Data.Max() * len(g.Data.TeamName) }
 
 // inGame reports whether the player takes part in this arena.
 func (g *Game) inGame(pl *plat.Player) bool {
+	// In a running match, spectators and players awaiting respawn still belong to the arena.
 	if g.Phase == PhaseLobby {
 		for _, p := range g.Players {
 			if p.Name == pl.Name {
@@ -532,6 +533,7 @@ func readBeds(w *world.World, pos map[string]cube.Pos) map[string]bool {
 			res[team] = ok
 		}
 	})
+	// A stalled world tick must not hold up the arena loop indefinitely.
 	select {
 	case <-done:
 	case <-time.After(2 * time.Second):

@@ -70,6 +70,7 @@ func initDataFolder(log *slog.Logger) {
 	for _, d := range []string{"Arenas", "Cache", "Skin"} {
 		_ = os.MkdirAll(filepath.Join(dataDir, d), 0o755)
 	}
+	// Seed only missing skins so local replacements survive restarts.
 	for _, n := range []string{"diamond.png", "emerald.png", "invisible.png"} {
 		dst := filepath.Join(dataDir, "Skin", n)
 		if _, err := os.Stat(dst); err == nil {

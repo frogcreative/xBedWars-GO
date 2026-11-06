@@ -4,6 +4,7 @@ package game
 // a ladder facing north, south, east or west.
 type towerStep struct{ dx, dy, dz, facing int }
 
+// SpawnTower consumes each layout in order, one block per tick; keep the sequence intentional.
 // towerNorth is the tower layout used when the player faces north.
 var towerNorth = []towerStep{
 	{2, 0, 0, 0}, {-2, 0, 0, 0}, {0, 0, -2, 0}, {2, 0, 1, 0}, {1, 0, 2, 0}, {-2, 0, -1, 0},

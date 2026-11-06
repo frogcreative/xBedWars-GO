@@ -31,6 +31,7 @@ type Player struct {
 	Name string
 	H    *world.EntityHandle
 
+	// mu keeps enqueueing and channel closure mutually exclusive.
 	mu     sync.Mutex
 	q      chan func(tx *world.Tx, p *player.Player)
 	online atomic.Bool
@@ -283,6 +284,7 @@ func (p *Player) TeleportTo(w *world.World, pos mgl64.Vec3) {
 // holding the plugin lock.
 func (p *Player) Sync() {
 	done := make(chan struct{})
+	// The no-op runs after earlier queued actions, unless Do drops it on a full queue.
 	p.Do(func(_ *world.Tx, _ *player.Player) { close(done) })
 	select {
 	case <-done:

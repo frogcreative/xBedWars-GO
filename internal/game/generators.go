@@ -207,6 +207,7 @@ func box(pos util.Vec, r float64) cube.BBox {
 }
 
 // countItems counts the dropped items of kind around a generator.
+// Each dropped stack counts once, regardless of how many items it contains.
 func countItems(tx *world.Tx, pos util.Vec, r float64, kind string) int {
 	n := 0
 	for e := range tx.EntitiesWithin(box(pos, r)) {

@@ -87,6 +87,7 @@ func (g *Game) upgradeTeamGens(team string) {
 	tg := g.Data.TeamGenerator[team]
 	for _, ge := range g.Gens {
 		key := ge.Kind
+		// Runtime team emerald generators share the arena's "emerald" position key.
 		if key == "emeraldTeam" {
 			key = "emerald"
 		}

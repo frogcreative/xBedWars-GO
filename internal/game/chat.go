@@ -63,6 +63,7 @@ func (g *Game) Chat(pl *plat.Player, msg string) {
 // inside the spectator transaction.
 func (g *Game) OpenSpectatorMenu(p *player.Player) {
 	g.P.Mu.Lock()
+	// Keep these slices aligned: the form callback resolves its selected button by index.
 	var names, texts []string
 	for _, pl := range g.Players {
 		if _, spectating := g.Spectators[pl.Name]; spectating {

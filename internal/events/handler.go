@@ -69,6 +69,7 @@ func (h *Handler) HandleBlockBreak(ctx *player.Context, pos cube.Pos, drops *[]i
 	bed, isBed := p.Tx().Block(pos).(block.Bed)
 	other := pos
 	if isBed {
+		// A bed occupies two blocks; pass both halves to the arena's break check.
 		other = pos.Side(bed.Facing.Face())
 		if bed.Head {
 			other = pos.Side(bed.Facing.Opposite().Face())
@@ -153,6 +154,7 @@ func classify(src world.DamageSource) (cause, attacker string) {
 			attacker = a.Name()
 		}
 	}
+	// Map concrete Dragonfly source types to the cause labels used by game rules.
 	t := fmt.Sprintf("%T", src)
 	switch {
 	case strings.Contains(t, "Void"):

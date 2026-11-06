@@ -64,6 +64,7 @@ func (g *Game) ThrowEgg(p *player.Player) {
 		return
 	}
 	w, col, name := tx.World(), colourFor(team), p.Name()
+	// Match the bridge placement to the simulated flight so it appears as the egg travels.
 	time.AfterFunc(time.Duration(f.Ticks)*50*time.Millisecond, func() { g.layBridge(w, f.Trail, col, name) })
 }
 
