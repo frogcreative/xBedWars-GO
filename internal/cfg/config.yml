@@ -1,0 +1,197 @@
+# NewBedwars configuration
+# This file is copied into plugin_data/NewBedwars/config.yml the first time
+# the plugin runs. Edit it there, then restart (or /newbedwars reload if
+# available) to apply changes. Color codes use "&" (e.g. &e = yellow).
+# Placeholders inside a message ({player}, {team}, {seconds}, ...) are filled
+# in automatically - only edit the text around them.
+
+config-version: 1
+
+game:
+  # Server address shown on the waiting-lobby scoreboard.
+  server-ip: "play.youripaddress.com"
+
+  timers:
+    # Seconds the lobby countdown starts from once enough players have joined.
+    lobby-countdown: 20
+    # Seconds between each generator tier upgrade (Diamond II/III, Emerald II/III).
+    upgrade-interval: 300
+    # Seconds after game start until beds are destroyed automatically.
+    bed-destroy-time: 600
+    # Seconds after beds are gone until Sudden Death starts.
+    sudden-death-time: 600
+    # Seconds after Sudden Death starts until the game is declared a draw.
+    game-over-time: 600
+    # Seconds the "restarting arena" countdown takes after a game ends.
+    restart-time: 10
+
+  dragon:
+    # How far (in blocks) the Sudden Death dragon can roam from the map's
+    # center point before it re-picks a target to fly toward. On very large
+    # maps this may need to be raised so it can actually reach every island.
+    max-distance-from-mid: 100
+
+  generator:
+    # Seconds between each resource drop from the Iron/Gold generators on
+    # every team's own island (not the shared Diamond/Emerald generators).
+    # Lower = faster resource income for every team.
+    iron-interval: 2
+    gold-interval: 6
+
+  egg-bridge:
+    # Throw strength for the Bridge Egg item - higher throws it further.
+    throw-power: 1.5
+    # Ticks (20 = 1 second) the egg can fly before its wool trail is placed
+    # regardless of whether it hit a block - this is what makes the bridge
+    # still appear even when the egg is thrown into a void.
+    max-age-ticks: 60
+
+  explosives:
+    tnt:
+      # Explosion radius passed to pmmp's own explosion/block-breaking logic.
+      # Smaller also means less of pmmp's built-in vanilla explosion damage.
+      radius: 3
+      # Extra flat damage (in half-hearts) dealt directly to any player caught
+      # within damage-range, on top of pmmp's own explosion damage - lowering
+      # this (and/or damage-range) is the main way to make TNT less deadly.
+      direct-damage: 2
+      # Blocks - how far from the explosion the flat direct-damage above still
+      # applies.
+      damage-range: 6
+      # Knockback strength applied to players caught in damage-range.
+      knockback: 2
+    fireball:
+      radius: 3
+      direct-damage: 2
+      damage-range: 6
+      knockback: 2
+
+scoreboard:
+  title: "&l&eBED WARS"
+  unicode:
+    # Symbol shown after the health number under a player's nametag.
+    health-symbol: ""
+    # Symbol shown next to a team's name on the in-game scoreboard while
+    # their bed is still standing.
+    team-bed-alive: ""
+    # Symbol shown next to a team's name once that team is fully eliminated.
+    team-eliminated: ""
+  lobby-lines:
+    map: "&fMap: &a{map}"
+    players: "&fPlayers: &a{count}/{max}"
+    starting-in: "&fStarting in: &a{time}s"
+    waiting: "&fWaiting..."
+    mode: "&fMode: &a{mode}"
+  game-lines:
+    diamond-2-in: "&fDiamond II in: &a{time}"
+    emerald-2-in: "&fEmerald II in: &a{time}"
+    diamond-3-in: "&fDiamond III in: &a{time}"
+    emerald-3-in: "&fEmerald III in: &a{time}"
+    bed-gone-in: "&fBed gone in: &a{time}"
+    sudden-death-in: "&fSudden Death in: &a{time}"
+    game-end-in: "&fGame End in: &a{time}"
+    kills: "Kills: &a{kills}"
+    final-kills: "Final Kills: &a{kills}"
+    beds-broken: "Beds Broken: &a{count}"
+
+messages:
+  join: "{teamcolor}{player} &ehas joined (&b{count}&e/&b{max}&e)!"
+  leave: "{teamcolor}{player} &7disconnected!"
+  lobby-quit: "{player} &equit!"
+  team-eliminated: "&l&fTEAM ELIMINATED > &r{teamcolor}{team} Team &chas been eliminated!"
+  bed-destroyed: "&l&fBED DESTRUCTION > &r{teamcolor}{team} Bed &7was destroyed by {playercolor}{player}&7!"
+  victory-title: "&l&6VICTORY"
+  respawned-title: "&aRESPAWNED!"
+  respawn-subtitle: "&eYou will respawn in &c{seconds} &eseconds!"
+  solo-no-teaming: "&c&lTeaming is not allowed in Solo mode!"
+  popup-tower-blocked: "&cCannot place PopupTower due to collision with map block(s)"
+  fight-title: "&l&aFIGHT!"
+  sudden-death-title: "&cSudden Death"
+  sudden-death-dragon: "&cSUDDEN DEATH: &6+&b1 {teamcolor}{team} Dragon!"
+  all-beds-destroyed: "&c&lAll beds have been destroyed!"
+  bed-destroyed-title: "&l&cBED DESTROYED"
+  bed-destroyed-subtitle: "&fAll beds have been destroyed!"
+  no-respawn-subtitle: "&fYou will no longer respawn!"
+  game-over-title: "&l&cGAME OVER"
+  died-title: "&l&cYOU DIED!"
+  spectator-subtitle: "&7You are now spectator"
+  respawned-title-ingame: "&l&aRESPAWNED!"
+  trap-triggered-title: "&l&cTRAP TRIGGERED"
+  trap-it-a-trap: "&fYour It's a trap has been triggered!"
+  trap-counter-offensive: "&fYour Counter-Offensive Trap has been triggered!"
+  trap-alarm-title: "&c&lALARM!!!"
+  trap-alarm-subtitle: "&fAlarm trap set off by {teamcolor}{team} &fteam!"
+  trap-alarm: "&fYour Alarm Trap has been triggered!"
+  trap-miner-fatigue: "&fYour Miner Fatigue Trap has been triggered!"
+  shout: "&6SHOUT > &7[{teamcolor}{team}&7] &r{player}: &7{message}"
+  team-chat: "{teamcolor}{player}&f: &7{message}"
+
+  countdown:
+    "20": "&eThe game has starts in 20 seconds!"
+    "10": "&eThe game has starts in &610 &eseconds!"
+    "5": "&eThe game has starts in &c5 &eseconds!"
+    "4": "&eThe game has starts in &c4 &eseconds!"
+    "3": "&eThe game has starts in &c3 &eseconds!"
+    "2": "&eThe game has starts in &c2 &eseconds!"
+    "1": "&eThe game has starts in &c1 &esecond!"
+
+  # Printed to every player's chat the instant the game starts.
+  game-start-banner:
+    - "&a▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+    - "&f                                   &lBedWars"
+    - ""
+    - "&e&l    Protect your bed and destroy the enemy beds."
+    - "&e&l      Upgrade yourself and your team by collecting"
+    - "&e&l   Iron, Gold, Emerald, and Diamond from generators"
+    - ""
+    - "&a▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+
+  upgrade:
+    diamond-2: "&bDiamond Generators &ehas been upgraded to Tier &cII"
+    emerald-2: "&2Emerald Generators &ehas been upgraded to Tier &cII"
+    diamond-3: "&bDiamond Generators &ehas been upgraded to Tier &cIII"
+    emerald-3: "&2Emerald Generators &ehas been upgraded to Tier &cIII"
+
+# Shop prices. "currency" must be one of: Iron, Gold, Emerald.
+# Changing a price here changes both what's shown in the shop AND what's
+# actually charged - they can't drift out of sync.
+shop:
+  blocks:
+    wool: { currency: Iron, price: 4 }
+    terracotta: { currency: Iron, price: 12 }
+    stained-glass: { currency: Iron, price: 12 }
+    end-stone: { currency: Iron, price: 24 }
+    ladder: { currency: Iron, price: 4 }
+    plank: { currency: Gold, price: 4 }
+    obsidian: { currency: Emerald, price: 4 }
+  melee:
+    stone-sword: { currency: Iron, price: 10 }
+    iron-sword: { currency: Gold, price: 7 }
+    diamond-sword: { currency: Emerald, price: 3 }
+    knockback-stick: { currency: Gold, price: 5 }
+  armor:
+    chainmail-set: { currency: Iron, price: 40 }
+    iron-set: { currency: Gold, price: 12 }
+    diamond-set: { currency: Emerald, price: 6 }
+  tools:
+    shears: { currency: Iron, price: 20 }
+  bow:
+    arrow: { currency: Gold, price: 2 }
+    bow: { currency: Gold, price: 12 }
+    bow-power: { currency: Gold, price: 24 }
+    bow-power-punch: { currency: Emerald, price: 2 }
+  potions:
+    speed: { currency: Emerald, price: 1 }
+    jump: { currency: Emerald, price: 1 }
+    invisibility: { currency: Emerald, price: 2 }
+  utility:
+    golden-apple: { currency: Gold, price: 3 }
+    bedbug: { currency: Iron, price: 40 }
+    dream-defender: { currency: Iron, price: 120 }
+    fireball: { currency: Iron, price: 40 }
+    tnt-small: { currency: Gold, price: 4 }
+    tnt-large: { currency: Gold, price: 8 }
+    ender-pearl: { currency: Emerald, price: 4 }
+    egg-bridge: { currency: Emerald, price: 3 }
+    magic-milk: { currency: Gold, price: 4 }
+    pop-up-tower: { currency: Iron, price: 24 }
